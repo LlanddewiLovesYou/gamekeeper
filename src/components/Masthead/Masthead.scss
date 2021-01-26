@@ -1,0 +1,39 @@
+.masthead {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 25px;
+  .title {
+    font-size: 24px;
+  }
+  .login {
+    a {
+      color: white;
+      margin-left: 50px;
+      &:visited {
+        color: white;
+      }
+    }
+  }
+  .logged-in {
+    display: flex;
+    align-items: center;
+    .app__icon {
+      margin-right: 25px;
+    }
+    a {
+      color: white;
+      &:hover {
+        color: blue;
+      }
+    }
+    .plus {
+      height: 30px;
+      width: 30px;
+      background-image: url("../../images/plus.png");
+      background-size: cover;
+    }
+  }
+}

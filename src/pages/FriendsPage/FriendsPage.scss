@@ -1,0 +1,12 @@
+.friends-page {
+  display: flex;
+  flex-direction: column;
+  .friends {
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    font-size: 22px;
+    margin: 0 auto;
+  }
+}

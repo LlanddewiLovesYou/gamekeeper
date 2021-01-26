@@ -1,0 +1,50 @@
+.search-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  text-shadow: 1px 1px gray;
+  form {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px dotted black;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  label {
+    display: flex;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    width: 400px;
+    &:focus {
+      outline: 1px dotted lightblue;
+    }
+  }
+
+  button {
+    padding: 10px;
+    border: none;
+    color: white;
+    font-family: "Press Start 2P";
+    font-size: 10px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: chartreuse;
+    text-shadow: 1px 1px black;
+    margin-left: 30px;
+  }
+  .header {
+    font-size: 22px;
+    margin: 20px 0;
+  }
+  .results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { useCurrentUser, UserContext } from "./hooks/useCurrentUser";
+import { AppContent } from "./components/AppContent/AppContent";
+import { useHistory } from "react-router-dom";
 
 function App() {
+  const {
+    currentUser,
+    setCurrentUser,
+    validateUser,
+    loggedIn,
+    setLoggedIn,
+  } = useCurrentUser();
+
+  const history = useHistory();
+  const currentUserId = currentUser?._id;
+
+  useEffect(() => {
+    const userValidationSequence = async () => {
+      await validateUser();
+      if (currentUserId) {
+        history.push(`/gamekeeper/games/${currentUserId}`);
+      }
+    };
+    userValidationSequence();
+  }, [currentUserId]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="app__background">
+        <UserContext.Provider
+          value={{ currentUser, setCurrentUser, loggedIn, setLoggedIn }}
         >
-          Learn React
-        </a>
-      </header>
+          <AppContent />
+        </UserContext.Provider>
+      </div>
     </div>
   );
 }

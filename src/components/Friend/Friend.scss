@@ -1,0 +1,24 @@
+.friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  background: black;
+  border-radius: 5px;
+  border: 1px dotted white;
+  padding: 30px 0;
+  .header {
+    display: flex;
+    align-items: center;
+    div {
+      color: white;
+    }
+    .app__icon {
+      margin-left: 10px;
+    }
+  }
+  .username {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}

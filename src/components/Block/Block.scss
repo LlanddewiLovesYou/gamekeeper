@@ -1,0 +1,72 @@
+.block {
+  height: 350px;
+  width: 350px;
+  background-size: cover;
+  font-size: 16px;
+  border: 1px dotted black;
+  margin: 30px 50px;
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  &__flex {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-style: italic;
+    color: lightgray;
+  }
+
+  &__info {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  .button {
+    padding: 10px;
+    border: none;
+    color: white;
+    font-family: "Press Start 2P";
+    font-size: 10px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    .app__icon {
+      height: 16px;
+      width: 14px;
+      margin-left: 10px;
+    }
+  }
+  .button.complete {
+    background: green;
+  }
+
+  .complete-button {
+    width: fit-content;
+    background: red;
+    align-self: flex-end;
+  }
+
+  .hours {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 10px;
+    .app__icon {
+      margin-right: 20px;
+    }
+  }
+}
+
+.block.completed {
+  background-image: url("../../images/hit-block.png");
+}

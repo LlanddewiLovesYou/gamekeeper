@@ -1,0 +1,14 @@
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10%;
+  background-color: black;
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px dotted white;
+  div {
+    margin: 20px 0;
+  }
+}
