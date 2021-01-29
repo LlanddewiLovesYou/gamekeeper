@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/gamekeeper/static/css/main.e40f82e8.chunk.css",
-    "main.js": "/gamekeeper/static/js/main.341d2567.chunk.js",
-    "main.js.map": "/gamekeeper/static/js/main.341d2567.chunk.js.map",
+    "main.js": "/gamekeeper/static/js/main.0da9197c.chunk.js",
+    "main.js.map": "/gamekeeper/static/js/main.0da9197c.chunk.js.map",
     "runtime-main.js": "/gamekeeper/static/js/runtime-main.c78c28df.js",
     "runtime-main.js.map": "/gamekeeper/static/js/runtime-main.c78c28df.js.map",
     "static/js/2.c52a620f.chunk.js": "/gamekeeper/static/js/2.c52a620f.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.c78c28df.js",
     "static/js/2.c52a620f.chunk.js",
     "static/css/main.e40f82e8.chunk.css",
-    "static/js/main.341d2567.chunk.js"
+    "static/js/main.0da9197c.chunk.js"
   ]
 }
