@@ -14,7 +14,11 @@ export const BlockMenu: React.FC<Props> = ({ deleteFunction }) => {
   };
   return (
     <div className="block-menu">
-      <div className="app__icon goomba icon" onClick={() => setOpen(!open)} />
+      <div
+        className="app__icon goomba icon"
+        onClick={() => setOpen(!open)}
+        title="Edit/Delete Game"
+      />
       {open && (
         <div className="menu">
           <ul>

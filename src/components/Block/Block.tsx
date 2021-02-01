@@ -14,22 +14,29 @@ interface Props {
 
 export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
   const [complete, setComplete] = useState(completed);
-  const [hours, setHours] = useState(game.hours);
+  const [hours, setHours] = useState(game.hours.toString());
+  const [editing, setEditing] = useState(false);
   const [lastPlayed, setLastplayed] = useState(game.lastPlayed);
   const backgroundClass = complete ? "completed" : null;
   const rogueLikeClass = game.rogueLike ? "brick" : "question";
   const AudioBoundary = useAudio("/smw_coin.wav");
   const { loggedIn, currentUser } = useContext(UserContext);
 
-  const incrementHours = async (e: any) => {
+  const updateHours = async (e: any) => {
     e.preventDefault();
-    const increment = hours + 0.5;
-    setHours(increment);
-    setLastplayed(new Date(Date.now()).toDateString());
-    const incrementRequest = makeSignedRequest("PATCH", `/games/${game._id}`, {
-      hours: increment,
-    });
-    await incrementRequest();
+    if (editing) {
+      console.log(parseInt(hours));
+      setLastplayed(new Date(Date.now()).toDateString());
+      const incrementRequest = makeSignedRequest(
+        "PATCH",
+        `/games/${game._id}`,
+        {
+          hours: parseInt(hours),
+        }
+      );
+      await incrementRequest();
+    }
+    setEditing(!editing);
   };
 
   const updateComplete = async (e: any) => {
@@ -94,14 +101,22 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
         <div className="hours">
           <label className="block__label">
             Hours Played:
-            <div className="block__info">{hours}</div>
+            {editing ? (
+              <input
+                type="text"
+                value={hours}
+                onChange={(e) => setHours(e.target.value)}
+              />
+            ) : (
+              <div className="block__info">{hours}</div>
+            )}
           </label>
           {!complete && usersGame && (
             <div
               title="Add 30 Minutes"
               className="app__icon plus"
               onClick={(e) => {
-                incrementHours(e);
+                updateHours(e);
               }}
             />
           )}
