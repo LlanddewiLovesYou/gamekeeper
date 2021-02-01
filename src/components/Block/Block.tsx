@@ -4,6 +4,7 @@ import "./Block.scss";
 import { makeSignedRequest } from "../../util/makeSignedRequest";
 import { useAudio } from "../../hooks/useAudio";
 import { UserContext } from "../../hooks/useCurrentUser";
+import { BlockMenu } from "./BlockMenu/BlockMenu";
 
 interface Props {
   completed: Boolean;
@@ -52,14 +53,31 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
     }, 2000);
   };
 
+  const deleteGame = async (e) => {
+    e.preventDefault();
+    const deleteGameRequest = makeSignedRequest("DELETE", `/games/${game._id}`);
+
+    const getUpdatedGames = makeSignedRequest(
+      "GET",
+      `/games/${currentUser._id}`
+    );
+    await deleteGameRequest();
+    const updatedGamesResponse = await getUpdatedGames();
+    const updatedGames = updatedGamesResponse.data.games;
+    setGames(updatedGames);
+  };
+
   const usersGame = loggedIn && game.userId === currentUser._id;
 
   return (
     <div className={"block " + backgroundClass + " " + rogueLikeClass}>
       <div className="block__flex">
         <div className="title">
-          <h1>{game.title}</h1>
-          <div>{game.year}</div>
+          <div>
+            <h1>{game.title}</h1>
+            <div>{game.year}</div>
+          </div>
+          {usersGame && <BlockMenu deleteFunction={deleteGame} />}
         </div>
 
         <div>

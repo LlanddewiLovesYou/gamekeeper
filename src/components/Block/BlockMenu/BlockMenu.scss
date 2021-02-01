@@ -1,0 +1,33 @@
+.block-menu {
+  position: relative;
+  .icon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .menu {
+    background-color: black;
+    color: white;
+    text-shadow: 1px 1px gray;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px dotted white;
+    position: absolute;
+    width: fit-content;
+    font-size: 10px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      .delete:hover {
+        color: red;
+      }
+      li {
+        padding: 10px 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

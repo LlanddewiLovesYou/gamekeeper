@@ -19,7 +19,6 @@ export const useLogin = (submitUrl: string) => {
 
     try {
       const loginResponse = await Axios.post(submitUrl, loginData);
-      console.log({ loginResponse });
       const token = loginResponse.data.accessToken;
       const user = loginResponse.data.currentUser;
       if (token) {
