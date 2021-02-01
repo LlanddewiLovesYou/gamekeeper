@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/gamekeeper/static/css/main.d1072537.chunk.css",
-    "main.js": "/gamekeeper/static/js/main.cc86dcfb.chunk.js",
-    "main.js.map": "/gamekeeper/static/js/main.cc86dcfb.chunk.js.map",
+    "main.css": "/gamekeeper/static/css/main.1f31cd25.chunk.css",
+    "main.js": "/gamekeeper/static/js/main.fc6eee11.chunk.js",
+    "main.js.map": "/gamekeeper/static/js/main.fc6eee11.chunk.js.map",
     "runtime-main.js": "/gamekeeper/static/js/runtime-main.0a8c477f.js",
     "runtime-main.js.map": "/gamekeeper/static/js/runtime-main.0a8c477f.js.map",
     "static/js/2.16d38b65.chunk.js": "/gamekeeper/static/js/2.16d38b65.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.81c816a9.chunk.js": "/gamekeeper/static/js/3.81c816a9.chunk.js",
     "static/js/3.81c816a9.chunk.js.map": "/gamekeeper/static/js/3.81c816a9.chunk.js.map",
     "index.html": "/gamekeeper/index.html",
-    "static/css/main.d1072537.chunk.css.map": "/gamekeeper/static/css/main.d1072537.chunk.css.map",
+    "static/css/main.1f31cd25.chunk.css.map": "/gamekeeper/static/css/main.1f31cd25.chunk.css.map",
     "static/js/2.16d38b65.chunk.js.LICENSE.txt": "/gamekeeper/static/js/2.16d38b65.chunk.js.LICENSE.txt",
     "static/media/App.css": "/gamekeeper/static/media/star.acd98487.png",
     "static/media/Masthead.scss": "/gamekeeper/static/media/plus.632f3944.png"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.0a8c477f.js",
     "static/js/2.16d38b65.chunk.js",
-    "static/css/main.d1072537.chunk.css",
-    "static/js/main.cc86dcfb.chunk.js"
+    "static/css/main.1f31cd25.chunk.css",
+    "static/js/main.fc6eee11.chunk.js"
   ]
 }
