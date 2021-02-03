@@ -1,6 +1,7 @@
 .block-menu {
   position: relative;
   .icon {
+    height: 35px;
     &:hover {
       cursor: pointer;
     }
@@ -13,7 +14,7 @@
     border-radius: 5px;
     border: 1px dotted white;
     position: absolute;
-    width: fit-content;
+    width: 155px;
     font-size: 10px;
     ul {
       list-style-type: none;

@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useContext } from "react";
 import { Block } from "../../components/Block/Block";
-import { GamesContext } from "../../hooks/useGames";
+import { useGames } from "../../hooks/useGames";
 import { useParams } from "react-router-dom";
 import { makeSignedRequest } from "../../util/makeSignedRequest";
 import { UserContext } from "../../hooks/useCurrentUser";
@@ -9,7 +9,7 @@ import "./GamesPage.scss";
 interface Props {}
 
 export const GamesPage: React.FC<Props> = () => {
-  const { games, fetchUsersGames, user, setGames } = useContext(GamesContext);
+  const { games, fetchUsersGames, user, setGames } = useGames();
   const params = useParams();
   const userId = params.userId;
   const { setCurrentUser, currentUser } = useContext(UserContext);

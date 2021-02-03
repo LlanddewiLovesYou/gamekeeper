@@ -1,0 +1,20 @@
+@mixin games-layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 30px;
+}
+
+@mixin dark-text {
+  color: black;
+  text-shadow: 1px 1px white;
+}
+
+@mixin light-text {
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+@mixin gray-text {
+  color: gray;
+  text-shadow: 1px 1px black;
+}

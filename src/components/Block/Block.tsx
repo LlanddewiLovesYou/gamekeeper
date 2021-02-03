@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Game } from "../../../types/Game";
+import { GameEntry } from "../../../types/Game";
+import { useHistory } from "react-router-dom";
 import "./Block.scss";
 import { makeSignedRequest } from "../../util/makeSignedRequest";
 import { useAudio } from "../../hooks/useAudio";
@@ -8,7 +9,7 @@ import { BlockMenu } from "./BlockMenu/BlockMenu";
 
 interface Props {
   completed: Boolean;
-  game: Game;
+  game: GameEntry;
   setGames: any;
 }
 
@@ -21,15 +22,15 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
   const rogueLikeClass = game.rogueLike ? "brick" : "question";
   const AudioBoundary = useAudio("/smw_coin.wav");
   const { loggedIn, currentUser } = useContext(UserContext);
+  const history = useHistory();
 
   const updateHours = async (e: any) => {
     e.preventDefault();
     if (editing) {
-      console.log(parseInt(hours));
       setLastplayed(new Date(Date.now()).toDateString());
       const incrementRequest = makeSignedRequest(
         "PATCH",
-        `/games/${game._id}`,
+        `/my-games/${game._id}`,
         {
           hours: parseInt(hours),
         }
@@ -39,17 +40,18 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
     setEditing(!editing);
   };
 
-  const updateComplete = async (e: any) => {
+  const toggleComplete = async (e: any) => {
     e.preventDefault();
+
     const completionUpdateRequest = makeSignedRequest(
       "PATCH",
-      `/games/${game._id}`,
+      `/my-games/${game._id}`,
       { completed: !complete, completedOn: new Date(Date.now()).toDateString() }
     );
 
     const getUpdatedGames = makeSignedRequest(
       "GET",
-      `/games/${currentUser._id}`
+      `/my-games/${currentUser._id}`
     );
     await completionUpdateRequest();
     setComplete(!complete);
@@ -62,16 +64,44 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
 
   const deleteGame = async (e) => {
     e.preventDefault();
-    const deleteGameRequest = makeSignedRequest("DELETE", `/games/${game._id}`);
+    const deleteGameRequest = makeSignedRequest(
+      "DELETE",
+      `/my-games/${game._id}`
+    );
 
     const getUpdatedGames = makeSignedRequest(
       "GET",
-      `/games/${currentUser._id}`
+      `/my-games/${currentUser._id}`
     );
     await deleteGameRequest();
     const updatedGamesResponse = await getUpdatedGames();
     const updatedGames = updatedGamesResponse.data.games;
     setGames(updatedGames);
+  };
+
+  const addToMyGames = async (e) => {
+    // need to fix
+    e.preventDefault();
+
+    const copiedGame = {
+      title: game.title,
+      year: game.year,
+      rogueLike: game.rogueLike || false,
+      started: new Date(Date.now()).toDateString(),
+      lastPlayed: new Date(Date.now()).toDateString(),
+      hours: 0,
+      completed: false,
+      completedOn: "",
+      userId: currentUser._id,
+    };
+
+    const addRequest = makeSignedRequest(
+      "POST",
+      `/my-games/${currentUser._id}?gameId=${game.gameId}`,
+      copiedGame
+    );
+    await addRequest();
+    history.push(`/gamekeeper/games/${currentUser._id}`);
   };
 
   const usersGame = loggedIn && game.userId === currentUser._id;
@@ -82,9 +112,14 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
         <div className="title">
           <div>
             <h1>{game.title}</h1>
+            <div>{game.platform}</div>
             <div>{game.year}</div>
           </div>
-          {usersGame && <BlockMenu deleteFunction={deleteGame} />}
+          <BlockMenu
+            deleteFunction={deleteGame}
+            usersGame={usersGame}
+            addFunction={addToMyGames}
+          />
         </div>
 
         <div>
@@ -113,7 +148,7 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
           </label>
           {!complete && usersGame && (
             <div
-              title="Add 30 Minutes"
+              title="Add Play Time"
               className="app__icon plus"
               onClick={(e) => {
                 updateHours(e);
@@ -134,7 +169,7 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
               <AudioBoundary>
                 <button
                   className="button complete-button"
-                  onClick={(e) => updateComplete(e)}
+                  onClick={(e) => toggleComplete(e)}
                 >
                   Complete <div className="app__icon coin" />
                 </button>
@@ -144,7 +179,7 @@ export const Block: React.FC<Props> = ({ completed, game, setGames }) => {
               <AudioBoundary>
                 <button
                   className="button complete-button complete"
-                  onClick={(e) => updateComplete(e)}
+                  onClick={(e) => toggleComplete(e)}
                 >
                   Resume <div className="app__icon one-up" />
                 </button>

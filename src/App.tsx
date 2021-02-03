@@ -20,7 +20,10 @@ function App() {
     const userValidationSequence = async () => {
       await validateUser();
       if (currentUserId) {
-        history.push(`/gamekeeper/games/${currentUserId}`);
+        history.push("/gamekeeper");
+        // history.push(`/gamekeeper/games/${currentUserId}`);
+      } else {
+        history.push("/gamekeeper");
       }
     };
     userValidationSequence();

@@ -9,10 +9,9 @@ export const useGames = () => {
   const [user, setUser] = useState({ userName: "" });
 
   const fetchUsersGames = async (userId: string) => {
-    const gamesResponse = await Axios.get(`${getDomain()}/games/${userId}`);
-
+    const gamesResponse = await Axios.get(`${getDomain()}/my-games/${userId}`);
     setGames(gamesResponse.data.games);
-    setUser(gamesResponse.data.user[0]);
+    setUser(gamesResponse.data.user);
   };
 
   return { games, setGames, fetchUsersGames, user };
